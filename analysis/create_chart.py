@@ -47,10 +47,10 @@ def main():
     conf_chart = conf['chart']
     p.configure(global_theme='macarons')  # 设置主题
     charts = []
-    print(A.Analyze.chart_fn_list)
+    print(A.Analyze.chart_fn_list)  # 展示所有表对象
     for fn in A.Analyze.chart_fn_list:
         pa = parameter(fn)
-        x = fn(pa)
+        x = fn(pa)  # 循环运行表对象
         x.width = '100%'
         if fn.__name__ == 't3':
             x.width = 650
@@ -124,7 +124,7 @@ def t5(pa):
         y1.append(i[1])
 
     bar = p.Bar("大数据职位需求前10城市")
-    bar.add("需求量", next(pa), next(pa), mark_line=["average"], is_toolbox_show=False)
+    bar.add("需求量", y, y1, mark_line=["average"], is_toolbox_show=False)
     return bar
 
 

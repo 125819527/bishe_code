@@ -1,3 +1,6 @@
+"""
+获取表对象渲染数据
+"""
 from config.utils import create_mysql_connect, deal_result_list, deal_salarl_img, conclution_high_salary_technology, \
     technology_list, conclusion_demand_industry, conclusion_rising_rate, rising_list, post_list, position_list, \
     result_list, conclusion_industry_salary, conclusion_exp_demand_salary, conclusion_shandong, conclusion_area_salary, \

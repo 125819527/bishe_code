@@ -188,7 +188,8 @@ def conclution_high_salary_technology(technology_list, num, is_change=0):
     计算高薪技能
     """
     final_dict = {}
-    connection = pymysql.connect(host=MYSQL_HOST, user=USER, password=PASSWOWD, database=DATABASE, charset="utf8")
+    connection = pymysql.connect(host=MYSQL_HOST, user=USER, password=PASSWOWD, database=DATABASE,
+                                 charset="utf8")  # 链接数据库
     cursor = connection.cursor()
 
     try:
@@ -688,10 +689,30 @@ def commany_exp_salary(commany_list):
         cursor.close()
 
 
+def get_job_info(page, size):
+    connection = pymysql.connect(host=MYSQL_HOST, user=USER, password=PASSWOWD, database=DATABASE, charset="utf8")
+    cursor = connection.cursor()
+    try:
+        offset = (page - 1) * size
+        cursor.execute(f'USE `{DATABASE}`;')
+        sql = f"select * from job_info limit {size} offset {offset}"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        return result
+    except Exception as e:
+        print(e)
+
+    finally:
+        # 关闭数据库连接
+        connection.close()
+        cursor.close()
+
+
 result_list = create_mysql_connect()
 result_list = [list(i) for i in result_list]
 result_list = deal_result_list(result_list)
 
 if __name__ == '__main__':
     # create_mysql_connect()
-    pass
+    # pass
+    get_job_info(1, 10)

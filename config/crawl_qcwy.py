@@ -100,6 +100,7 @@ def get_job_list(keyword):
     except Exception as e:
         return
     finally:
+        print("断开数据库链接")
         connection.close()
         cursor.close()
 
